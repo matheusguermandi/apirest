@@ -1,13 +1,15 @@
 package com.project.apirest.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.project.apirest.domain.Pessoa;
 import com.project.apirest.domain.dto.PessoaDto;
 import com.project.apirest.repository.PessoaRepository;
-
-import java.util.Optional;
 
 @Service
 public class PessoaService {
@@ -21,17 +23,8 @@ public class PessoaService {
 		return pessoaDto;
 	}
 
-	public Pessoa getPessoaById(Long id) {
-		Optional<Pessoa> pessoa = repository.findById(id);
-		if (!pessoa.isPresent())
-			return null;
-
-		return pessoa.get();
-	}
-
 	public Pessoa update(Pessoa novaPessoa, Long id) {
-		Pessoa pessoa = getPessoaById(id);
-
+		Pessoa pessoa = findById(id);
 		pessoa.setNome(novaPessoa.getNome());
 		pessoa.setCpf(novaPessoa.getCpf());
 		pessoa.setNascimento(novaPessoa.getNascimento());
@@ -42,6 +35,18 @@ public class PessoaService {
 
 	public void delete(Long id) {
 		repository.deleteById(id);
+	}
+
+	public Pessoa findById(Long id) {
+		Optional<Pessoa> pessoa = repository.findById(id);
+		if (!pessoa.isPresent())
+			return null;
+
+		return pessoa.get();
+	}
+
+	public Page<Pessoa> findDinamic(Pessoa pessoa, Pageable pageable) {
+		return repository.findAll(pessoa.toSpec(), pageable);
 	}
 
 }

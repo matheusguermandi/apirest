@@ -3,6 +3,8 @@ package com.project.apirest.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,17 +37,24 @@ public class PessoaController {
 		service.update(pessoa, id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-	
+	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+
 	@GetMapping("/{id}")
-    public ResponseEntity<Pessoa> getPessoaById(@PathVariable("id") Long id) {
-		Pessoa pessoaById = service.getPessoaById(id);
-        return ResponseEntity.ok().body(pessoaById);
-    }
+	public ResponseEntity<Pessoa> findById(@PathVariable("id") Long id) {
+		Pessoa pessoaById = service.findById(id);
+		return ResponseEntity.ok().body(pessoaById);
+	}
+
+	@GetMapping("/find")
+	public ResponseEntity<Page<Pessoa>> findDinamic(Pessoa pessoa, Pageable pageable) {
+		Page<Pessoa> pessoaByName = service.findDinamic(pessoa, pageable);
+
+		return ResponseEntity.ok().body(pessoaByName);
+	}
 
 }
