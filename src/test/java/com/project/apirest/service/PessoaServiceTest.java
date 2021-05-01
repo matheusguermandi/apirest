@@ -144,5 +144,9 @@ public class PessoaServiceTest {
 
     }
 
-	
+    @Test
+    void should_be_able_to_delete_pessoa() {
+        service.delete(ID);
+        verify(repository).deleteById(ID);
+    }
 }
