@@ -1,5 +1,7 @@
 package com.project.apirest.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,15 +48,20 @@ public class PessoaController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Pessoa> findById(@PathVariable("id") Long id) {
-		Pessoa pessoaById = service.findById(id);
-		return ResponseEntity.ok().body(pessoaById);
+		Pessoa findById = service.findById(id);
+		return ResponseEntity.ok().body(findById);
 	}
 
 	@GetMapping("/find")
 	public ResponseEntity<Page<Pessoa>> findDinamic(Pessoa pessoa, Pageable pageable) {
-		Page<Pessoa> pessoaByName = service.findDinamic(pessoa, pageable);
-
-		return ResponseEntity.ok().body(pessoaByName);
+		Page<Pessoa> findDinamic = service.findDinamic(pessoa, pageable);
+		return ResponseEntity.ok().body(findDinamic);
+	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<Pessoa>> findAll() {
+		List<Pessoa> findAll = service.findAll();
+		return ResponseEntity.ok().body(findAll);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.project.apirest.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,7 @@ public class PessoaService {
 		return repository.findAll(pessoa.toSpec(), pageable);
 	}
 
+	public List<Pessoa> findAll() {
+		return repository.findAll();
+	}
 }
