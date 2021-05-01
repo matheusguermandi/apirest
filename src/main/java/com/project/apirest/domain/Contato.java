@@ -26,7 +26,7 @@ import lombok.Setter;
 public class Contato  {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
 
 	@NotBlank
 	@Column(nullable = false)
@@ -36,14 +36,14 @@ public class Contato  {
 	@Column(nullable = false)
 	private String telefone;
 
-	@Email(message = "Email invalido")
 	@NotBlank
+	@Email(message = "Ooops ... esté e-mail não é valido")
 	@Column(nullable = false)
 	private String email;
 	
 	@ManyToOne
+	@JsonBackReference
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id", nullable = false)
-    @JsonBackReference
     private Pessoa pessoa;
 
 }

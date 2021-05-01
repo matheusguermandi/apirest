@@ -32,23 +32,23 @@ import lombok.Setter;
 public class Pessoa {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
 
 	@NotBlank
 	@Column(nullable = false)
 	private String nome;
 
-	@CPF(message = "CPF invalido")
 	@NotBlank
+	@CPF(message = "Ooops ... esté cpf não é valido")
 	@Column(nullable = false)
 	private String cpf;
 
-	@Column(nullable = false)
 	@NotBlank
+	@Column(nullable = false)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate nascimento;
 	
+	@JsonManagedReference
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "pessoa")
-    @JsonManagedReference
     private List<Contato> contato;
 }
