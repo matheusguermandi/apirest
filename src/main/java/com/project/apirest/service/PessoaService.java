@@ -25,7 +25,7 @@ public class PessoaService {
 		Optional<Pessoa> pessoa = repository.findById(id);
 		if (!pessoa.isPresent())
 			return null;
-		
+
 		return pessoa.get();
 	}
 
@@ -38,7 +38,10 @@ public class PessoaService {
 		pessoa.setContato(novaPessoa.getContato());
 
 		return repository.save(pessoa);
+	}
 
+	public void delete(Long id) {
+		repository.deleteById(id);
 	}
 
 }
