@@ -37,7 +37,7 @@ public class Contato  {
 	private String telefone;
 
 	@NotBlank
-	@Email(message = "Ooops ... esté e-mail não é valido")
+	@Email(message = "Ooops ... este e-mail não é valido")
 	@Column(nullable = false)
 	private String email;
 	
