@@ -124,4 +124,25 @@ public class PessoaServiceTest {
 		assertFalse(violations.isEmpty());
 	}
 
+	@Test
+    void should_be_able_to_update_pessoa() {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome("Matheus");
+        pessoa.setCpf("29443658003");
+        
+        Pessoa novaPessoa = new Pessoa();
+        novaPessoa.setNome("Matheus 01");
+        novaPessoa.setCpf("58441349070");
+        
+        when(repository.findById(ID)).thenReturn(Optional.of(pessoa));
+        when(repository.save(pessoa)).thenReturn(novaPessoa);
+        
+        Pessoa update = service.update(novaPessoa, ID);
+        
+        assertEquals("Matheus 01", update.getNome());
+        assertEquals("58441349070", update.getCpf());
+
+    }
+
+	
 }
