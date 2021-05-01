@@ -11,11 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -43,7 +45,8 @@ public class Pessoa {
 	@Column(nullable = false)
 	private String cpf;
 
-	@NotBlank
+	@Past
+	@NotNull
 	@Column(nullable = false)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate nascimento;
