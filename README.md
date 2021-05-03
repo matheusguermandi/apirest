@@ -27,13 +27,15 @@
 
 ----------------------------------------------------------------------
 ### Passo a passo para acessar/testar o frontend da aplicação
-- É possivel ter acesso ao frontend acessando: 
+- É possivel ter acesso ao frontend acessando:
   - https://apirestpessoas.netlify.app/
+- Código fonte do frontend
+  - https://github.com/matheusguermandi/apirest-frontend  
  
 ----------------------------------------------------------------------
 
 ### Passo a passo para acessar/testar o backend da aplicação
-- É possivel ter uma visão geral dos métodos da API a partir da seguinte documentação
+- É possivel ter uma visão geral dos métodos da API a partir da seguinte documentação:
   - https://apirestpessoas.herokuapp.com/swagger-ui.html
 - Para realizar as requisições, basta clicar no botão abaixo que todas as rotas vão ser importadas para o Insomnia
 
