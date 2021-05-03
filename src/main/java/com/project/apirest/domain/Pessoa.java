@@ -25,6 +25,7 @@ import org.springframework.util.StringUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -40,20 +41,24 @@ import lombok.Setter;
 public class Pessoa {
 	@Id
 	@GeneratedValue
+	@ApiModelProperty(required = true, example = "")
 	private Long id;
 
 	@NotBlank
 	@Column(nullable = false)
+	@ApiModelProperty(required = true, example = "Matheus")
 	private String nome;
 
 	@NotBlank
-	@CPF(message = "Ooops ... este cpf não é valido")
 	@Column(nullable = false)
+	@CPF(message = "Ooops ... este cpf não é valido")
+	@ApiModelProperty(required = true, example = "170.018.590-01")
 	private String cpf;
 
 	@NotNull
-	@Past(message = "Ooops ... esta data não é valida")
 	@Column(nullable = false)
+	@Past(message = "Ooops ... esta data não é valida")
+	@ApiModelProperty(required = true, example = "2000-01-01")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate nascimento;
 
